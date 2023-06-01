@@ -19,13 +19,13 @@ describe("App", () => {
 
   test("Deveria existir um botão que, quando clicado, incrementa o contador de 1 em 1", async () => {
     render(<App />);
-    const button = screen.getByRole("button", { name: /contador: 0/i });
-    expect(button).toBeInTheDocument();
+    const botaoInicial = screen.getByRole("button", { name: /contador: 0/i });
+    expect(botaoInicial).toBeInTheDocument();
 
-    user.click(button)
+    user.click(botaoInicial)
 
-    const counter = await screen.findByText(/contador: 1/i)
-    expect(counter).toBeInTheDocument()
+    const botaoDepoisDeClicado = await screen.findByText(/contador: 1/i)
+    expect(botaoDepoisDeClicado).toBeInTheDocument()
   })
 
 })
