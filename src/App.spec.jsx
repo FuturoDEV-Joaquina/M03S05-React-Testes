@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event'
 import App from "./App.jsx";
+const user = userEvent.setup()
 
 describe("App", () => {
 
@@ -15,6 +17,15 @@ describe("App", () => {
     expect(title).toBeInTheDocument();
   })
 
-  test.todo("Deveria existir um botão de incremento")
+  test("Deveria existir um botão que, quando clicado, incrementa o contador de 1 em 1", async () => {
+    render(<App />);
+    const button = screen.getByRole("button", { name: /contador: 0/i });
+    expect(button).toBeInTheDocument();
+
+    user.click(button)
+
+    const counter = await screen.findByText(/contador: 1/i)
+    expect(counter).toBeInTheDocument()
+  })
 
 })
